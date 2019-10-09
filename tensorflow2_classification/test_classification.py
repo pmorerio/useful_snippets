@@ -91,7 +91,7 @@ for batch, label in train_data_gen:
             test_accuracy_batch_list.append(batch_accuracy.numpy())
         test_accuracy = np.asarray(test_accuracy_batch_list).mean()
         with writer.as_default():
-            tf.summary.scalar("training_accuracy", test_accuracy * 100, step=epoch)
+            tf.summary.scalar("test_accuracy", test_accuracy * 100, step=epoch)
         print('Test Accuracy at epoch [{0:03}]: {1:0.04}'.format(epoch, test_accuracy * 100))
 
         epoch += 1
