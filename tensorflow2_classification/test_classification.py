@@ -15,7 +15,7 @@ CLASS_NAMES = np.array([item for item in os.listdir(data_path) if os.path.isdir(
 
 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
 
-BATCH_SIZE  = 64
+BATCH_SIZE  = 32
 IMG_HEIGHT  = 224
 IMG_WIDTH   = 224
 N_EPOCHS    = 50
@@ -68,7 +68,7 @@ for batch, label in train_data_gen:
             test_accuracy_batch_list.append(batch_accuracy.numpy())
         test_accuracy = np.asarray(test_accuracy_batch_list).mean()
         with writer.as_default():
-            tf.summary.scalar("test_accuracy", test_accuracy * 100, step=epoch)
+            tf.summary.scalar("test_accuracy", test_accuracy * 100, step=epoch + 1)
         print('Test Accuracy at epoch [{0:03}]: {1:0.04}'.format(epoch, test_accuracy * 100))
 
         epoch += 1
